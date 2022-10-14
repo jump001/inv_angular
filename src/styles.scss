@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: 'Noto Sans Thai', Poppins, sans-serif;
+}
+
+section.footer {
+    background-color: #e5e6e7 !important;
+}
+
+.carousel-item img {
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .carousel-item img {
+        width: auto !important;
+        height: 450px;
+    }
+}
