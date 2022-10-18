@@ -6,6 +6,21 @@ import { AppComponent } from './app.component';
 
 //ng bootstrap
 import { NgbAlertModule, NgbModalConfig, NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+// Chart JS
+import { ChartModule } from 'angular2-chartjs';
+// HttpModule
+import { HttpClientModule } from '@angular/common/http';
+
+// Form Module
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// Constant Service
+import { ConstantService } from './services/common/constant.service';
+
+
+
+
+
 import { FrontendLayoutComponent } from './layouts/frontend-layout/frontend-layout.component';
 import { BackendLayoutComponent } from './layouts/backend-layout/backend-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
@@ -52,13 +67,17 @@ import { SidebarBackendComponent } from './shared/backend/sidebar-backend/sideba
     SidebarBackendComponent
   ],
   imports: [
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ChartModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule
   ],
-  providers: [NgbModalConfig],
+  providers: [NgbModalConfig,ConstantService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

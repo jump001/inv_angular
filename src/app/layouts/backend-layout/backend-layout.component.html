@@ -1,1 +1,13 @@
-<p>backend-layout works!</p>
+<app-header-backend></app-header-backend>
+
+<div class="row">
+    <div style="position: fixed; width: 290px;">
+        <app-sidebar-backend></app-sidebar-backend>
+    </div>
+    <div class="col-md-10" style="margin-left: 300px;">
+        <div class="box-content">
+            <router-outlet></router-outlet>
+        </div>
+        <app-footer-backend></app-footer-backend>
+    </div>
+</div>

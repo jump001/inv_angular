@@ -20,8 +20,11 @@
     "@angular/router": "^14.2.0",
     "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
+    "angular2-chartjs": "^0.5.1",
     "bootstrap": "^5.2.2",
+    "jquery": "^3.6.1",
     "rxjs": "~7.5.0",
+    "sweetalert2": "^11.5.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

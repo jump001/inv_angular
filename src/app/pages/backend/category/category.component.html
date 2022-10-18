@@ -1,1 +1,204 @@
-<p>category works!</p>
+<div class="mb-4 d-sm-flex align-items-center justify-content-between">
+  <h1 class="mb-0 text-gray-800">หมวดหมู่สินค้า</h1>
+
+  <div>
+    <a
+      data-bs-toggle="modal"
+      data-bs-target="#modalAdd"
+      class="shadow-sm d-none d-sm-inline-block btn btn-lg btn-success"
+      ><i class="fas fa-plus fa-sm text-white-50"></i> เพิ่มรายการ</a
+    >
+  </div>
+</div>
+
+<table class="table table-bordered table-striped table-hover mt-4">
+  <thead>
+    <tr class="text-white bg-primary">
+      <th>ID</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Created</th>
+      <th>Updated</th>
+      <th>Manage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of dataCategory">
+      <td>{{ c.CategoryID }}</td>
+      <td>{{ c.CategoryName }}</td>
+      <td>{{ c.CategoryStatus == 1 ? "เปิดใช้งาน" : "ปิดใช้งาน" }}</td>
+      <td>{{ c.CreatedDate }}</td>
+      <td>{{ c.ModifiedDate }}</td>
+      <td style="width: 200px">
+        <a
+          role="button"
+          class="btn btn-warning text-white"
+          (click)="editCategory(c._id)"
+          ><i class="fas fa-edit"></i> Edit</a
+        >&nbsp;
+        <a
+          role="button"
+          class="btn btn-danger text-white"
+          role="button"
+          (click)="deleteCategory(c._id)"
+          ><i class="fas fa-trash-alt"></i> Delete</a
+        >
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal สำหรับไว้เพิ่มรายการสินค้าใหม่-->
+<div
+  class="modal fade"
+  id="modalAdd"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modelTitleId"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">เพิ่มหมวดหมู่ใหม่</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3 row">
+            <label for="CategoryName" class="col-sm-3 col-form-label"
+              >ชื่อหมวดหมู่</label
+            >
+            <div class="col-sm-9">
+              <input
+                type="text"
+                class="form-control"
+                name="CategoryName"
+                id="CategoryName"
+                placeholder="ชื่อหมวดหมู่"
+                [(ngModel)]="dataCategoryAdd.CategoryName"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label for="CategoryStatus" class="col-sm-3 col-form-label"
+              >สถานะ</label
+            >
+            <div class="col-sm-9">
+              <select
+                name="CategoryStatus"
+                id="CategoryStatus"
+                class="form-control"
+                [(ngModel)]="dataCategoryAdd.CategoryStatus"
+              >
+                <option value="">--เลือกสถานะ--</option>
+                <option value="1">เปิดใช้งาน</option>
+                <option value="0">ปิดใช้งาน</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <div class="offset-sm-3 col-sm-9">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="submitAddCategory()"
+              >
+                บันทึกข้อมูล
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal สำหรับแก้ไขรายการสินค้า -->
+<div
+  class="modal fade"
+  id="modalEdit"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modelTitleId"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">แก้ไขหมวดหมู่สินค้า</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form>
+            <div class="mb-3 row">
+              <label for="CategoryName" class="col-sm-3 col-form-label"
+                >ชื่อหมวดหมู่</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="CategoryName"
+                  id="CategoryName"
+                  placeholder="ชื่อสินค้า"
+                  [(ngModel)]="dataCategoryEdit.CategoryName"
+                />
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="CategoryStatus" class="col-sm-3 col-form-label"
+                >สถานะ</label
+              >
+              <div class="col-sm-9">
+                <select
+                  name="CategoryStatus"
+                  id="CategoryStatus"
+                  class="form-control"
+                  [(ngModel)]="dataCategoryEdit.CategoryStatus"
+                >
+                  <option value="1">เปิดใช้งาน</option>
+                  <option value="0">ปิดใช้งาน</option>
+                </select>
+              </div>
+            </div>
+
+            <input
+              type="hidden"
+              class="form-control"
+              name="cat_id"
+              id="cat_id"
+              [(ngModel)]="dataCategoryEdit.cat_id"
+            />
+
+            <div class="mb-3 row">
+              <div class="offset-sm-3 col-sm-9">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  (click)="submitEditCategory()"
+                >
+                  บันทึกข้อมูล
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
